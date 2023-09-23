@@ -15,6 +15,11 @@ Here's how to get started with Pac-Man Factory:
 
 - Click "Add Pac-Man" to add a new Pac-Man to the screen!
 - Click "Reset" to remove all Pac-Men.
+
+## Roadmap of improvements
+
+1. Generate Pac-Man food.
+1. Generate ghosts.
  
 ## License
  
