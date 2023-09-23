@@ -1,9 +1,20 @@
 var pacMen = []
 
+/**
+ * Returns the src for a pac-man's image from the provided state.
+ * 
+ * @param {*} state The pac-man's state.
+ * @returns The img src for the provided state.
+ */
 function imgSrcForState(state) {
     return `images/pacman${state}.png`
 }
 
+/** 
+ * Creates a new pac-man with a random position within the window's inner bounds.
+ * 
+ * @returns A pac-man.
+ */
 function newPacMan() {
     let velocity = 1;
     let speed = 25;
@@ -31,6 +42,12 @@ function newPacMan() {
         img: img
     };
 }
+
+/**
+ * Moves the provided pac-man and udpates its state.
+ * 
+ * @param {*} pacMan The pac-man for which to move.
+ */
 function move(pacMan) {
     checkCollision(pacMan);
     setState(pacMan);
@@ -39,6 +56,12 @@ function move(pacMan) {
     console.log(pacMan.x);
 }
 
+/**
+ * Checks if moving the pac-man would cause a collision with the window's inner bounds and,
+ * if so, reverses its velocity.
+ * 
+ * @param {*} pacMan The pac-man for which to check collisions.
+ */
 function checkCollision(pacMan) {
     if (
         pacMan.x + (pacMan.speed*pacMan.velocity) + pacMan.size >= window.innerWidth 
@@ -48,6 +71,11 @@ function checkCollision(pacMan) {
     }
 }
 
+/**
+ * Sets the next state for the provided pac-man.
+ * 
+ * @param {*} pacMan The pac-man for which to set state.
+ */
 function setState(pacMan) {
     if (pacMan.velocity === 1) {
         if (pacMan.state === 1) {
@@ -66,17 +94,26 @@ function setState(pacMan) {
     pacMan.img.src = imgSrcForState(pacMan.state);
 }
 
+/**
+ * Adds a new pac-man to the screen.
+ */
 function add() {
     let pacMan = newPacMan();
     document.getElementById('pacMen').appendChild(pacMan.img);
     pacMen.push(pacMan);
 }
 
+/**
+ * Reets the screen removing all pac-men.
+ */
 function reset() {
     pacMen = [];
     document.getElementById("pacMen").innerHTML = '';
 }
 
+/**
+ * Moves all pac-men.
+ */
 function step() {
     if (pacMen.length === 0) return
     pacMen.forEach(move);
